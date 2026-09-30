@@ -1,0 +1,66 @@
+# Smart Device Registry
+# Each device must be commissioned into the Matter fabric via the ESP32-C6 bridge
+
+devices:
+  - name: "living_room_light"
+    display_name: "Living Room Light"
+    type: "light"
+    matter_node_id: 1
+    matter_endpoint: 1
+    capabilities:
+      - "on_off"
+      - "brightness"
+      - "color"
+    aliases:
+      - "living room"
+      - "main light"
+      - "front light"
+
+  - name: "bedroom_light"
+    display_name: "Bedroom Light"
+    type: "light"
+    matter_node_id: 2
+    matter_endpoint: 1
+    capabilities:
+      - "on_off"
+      - "brightness"
+    aliases:
+      - "bedroom"
+      - "bed light"
+      - "bedside light"
+
+  - name: "smart_plug_1"
+    display_name: "Smart Plug"
+    type: "plug"
+    matter_node_id: 3
+    matter_endpoint: 1
+    capabilities:
+      - "on_off"
+    aliases:
+      - "plug"
+      - "outlet"
+      - "socket"
+
+# Supported actions per capability
+actions:
+  on_off:
+    - "on"
+    - "off"
+  brightness:
+    - "brightness"    # brightness(0-100)
+    - "dim"           # shortcut for brightness(30)
+    - "brighten"      # shortcut for brightness(100)
+  color:
+    - "color"         # color(red/blue/green/white/warm)
+
+# Available colours for color-capable devices
+available_colors:
+  - "red"
+  - "blue"
+  - "green"
+  - "white"
+  - "warm"
+  - "cool"
+  - "purple"
+  - "orange"
+  - "yellow"

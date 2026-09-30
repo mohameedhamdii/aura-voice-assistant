@@ -1,0 +1,31 @@
+# Audio Pipeline Configuration
+# Optimised for ReSpeaker 4-Mic Array HAT on Raspberry Pi 5
+
+# Microphone input settings
+sample_rate: 16000          # 16 kHz for Whisper compatibility
+channels: 1                  # Mono (beamformed output from ReSpeaker)
+chunk_size: 512              # Samples per read (~32 ms at 16 kHz)
+audio_format: "int16"        # 16-bit signed integer PCM
+
+# Voice Activity Detection (VAD)
+silence_threshold: 500       # RMS energy threshold for silence detection
+silence_duration_s: 1.5      # Seconds of silence before stopping recording
+max_recording_s: 15          # Maximum recording duration in seconds
+min_recording_s: 0.5         # Minimum recording duration (ignore very short sounds)
+
+# Wake word detection
+wake_word_model: "hey_assistant"
+wake_word_threshold: 0.5     # Detection confidence threshold (0.0 - 1.0)
+
+# Audio device settings (ALSA)
+input_device_index: null     # null = auto-detect ReSpeaker, or set device index
+output_device_index: null    # null = auto-detect speaker output
+
+# Chime sounds
+chime_listening: "assets/chimes/listening.wav"
+chime_error: "assets/chimes/error.wav"
+chime_thinking: "assets/chimes/thinking.wav"
+
+# Noise gate
+noise_gate_enabled: true
+noise_gate_threshold: 200    # Samples below this amplitude are zeroed

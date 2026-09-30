@@ -1,0 +1,21 @@
+[Unit]
+Description=Offline Voice Assistant with On-Device LLM
+After=multi-user.target sound.target network.target
+
+[Service]
+Type=simple
+User=pi
+Group=audio
+WorkingDirectory=/home/pi/offline-voice-assistant
+ExecStart=/home/pi/offline-voice-assistant/venv/bin/python src/main.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+# Hardware access permissions
+SupplementaryGroups=gpio i2c dialout audio
+
+[Install]
+WantedBy=multi-user.target

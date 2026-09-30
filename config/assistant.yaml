@@ -1,0 +1,58 @@
+# General Assistant Configuration
+
+# Project metadata
+project_name: "Offline Voice Assistant"
+version: "1.0.0"
+
+# Model paths (relative to project root)
+models:
+  whisper:
+    path: "models/whisper/ggml-base.en.bin"
+    model_name: "base.en"
+    n_threads: 4
+    language: "en"
+    use_gpu: false
+  llm:
+    path: "models/llm/phi-3.5-mini-instruct.Q4_K_M.gguf"
+    model_name: "phi-3.5-mini"
+    n_threads: 4
+    n_gpu_layers: 0           # Set > 0 if Hailo-8L is available
+    temperature: 0.3
+    max_tokens: 100
+    context_window: 2048
+    context_turns: 3          # Sliding window of conversation turns
+    context_timeout_s: 120    # Clear context after 2 min inactivity
+  tts:
+    path: "models/piper/en_US-lessac-medium.onnx"
+    voice: "en_US-lessac-medium"
+    sample_rate: 22050
+    output_sample_rate: 16000  # Resample for ALSA output
+  wake_word:
+    path: "models/wake_word/hey_assistant.tflite"
+    model_name: "hey_assistant"
+    threshold: 0.5
+
+# Hardware
+hardware:
+  led:
+    num_leds: 12
+    gpio_pin: 18              # GPIO18 (PWM0) for WS2812B
+    brightness: 50            # Default brightness (0-255)
+    led_type: "WS2812B"
+  mute_button:
+    gpio_pin: 17              # GPIO17 for mute button
+    pull_up: true
+  serial:
+    port: "/dev/ttyUSB0"      # ESP32-C6 serial connection
+    baud_rate: 115200
+    timeout_s: 2
+
+# Logging
+logging:
+  level: "INFO"               # DEBUG, INFO, WARNING, ERROR
+  file: "logs/assistant.log"
+  max_size_mb: 10
+  backup_count: 3
+
+# System prompt
+system_prompt_path: "config/system_prompt.txt"

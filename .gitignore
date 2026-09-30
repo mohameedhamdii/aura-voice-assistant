@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models (too large for git - download with scripts/download_models.sh)
+models/whisper/*.bin
+models/llm/*.gguf
+models/piper/*.onnx
+models/piper/*.onnx.json
+models/wake_word/*.tflite
+
+# ESP32 build
+esp32-matter-bridge/build/
+esp32-matter-bridge/managed_components/
+esp32-matter-bridge/sdkconfig
+esp32-matter-bridge/sdkconfig.old
+
+# Logs
+logs/
+*.log
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Hardware
+hardware/enclosure_stl/*.stl
+!hardware/enclosure_stl/speaker_housing.stl
